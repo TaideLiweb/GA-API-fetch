@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
 </head>
 <body>
     <script>
@@ -48,13 +48,13 @@ function execute() {
 }
 
 gapi.load("client:auth2", function() {
-    window.gapi.client
-        .init({
-          clientId:'273069555341-fuh8v8am33j7qi2neoebd66astceb9rs.apps.googleusercontent.com',
-          scope: "email",
-          plugin_name:'App Name that you used in google developer console API'
-        })
-//   gapi.auth2.init({client_id: "273069555341-fuh8v8am33j7qi2neoebd66astceb9rs.apps.googleusercontent.com"});
+    // window.gapi.client
+    //     .init({
+    //       clientId:'273069555341-fuh8v8am33j7qi2neoebd66astceb9rs.apps.googleusercontent.com',
+    //       scope: "email",
+    //       plugin_name:'App Name that you used in google developer console API'
+    //     })
+  gapi.auth2.init({client_id: "273069555341-fuh8v8am33j7qi2neoebd66astceb9rs.apps.googleusercontent.com"});
 });
 
     </script>
