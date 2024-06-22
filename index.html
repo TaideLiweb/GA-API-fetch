@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    <script>
+        function authenticate() {
+  return gapi.auth2.getAuthInstance()
+      .signIn({scope: "https://www.googleapis.com/auth/analytics.readonly"})
+      .then(function() { console.log("Sign-in successful"); },
+            function(err) { console.error("Error signing in", err); });
+}
+
+function loadClient() {
+  gapi.client.setApiKey("AIzaSyCNbUAlGAuQq7a-fA6JwJj2mPpYtYFKj-Q");
+  return gapi.client.load("https://analyticsreporting.googleapis.com/$discovery/rest?version=v4")
+      .then(function() { console.log("GAPI client loaded for API"); },
+            function(err) { console.error("Error loading GAPI client for API", err); });
+}
+
+function execute() {
+  return gapi.client.analyticsreporting.reports.batchGet({
+    "reportRequests": [
+      {
+        "viewId": "264046229",
+        "dateRanges": [
+          {
+            "startDate": "7daysAgo",
+            "endDate": "today"
+          }
+        ],
+        "metrics": [
+          {
+            "expression": "ga:sessions"
+          }
+        ]
+      }
+    ]
+  })
+      .then(function(response) {
+              console.log("Response", response);
+            },
+            function(err) { console.error("Execute error", err); });
+}
+
+gapi.load("client:auth2", function() {
+  gapi.auth2.init({client_id: "273069555341-qk84rd2rbltuj67endt341g9h7o8kn23.apps.googleusercontent.com"});
+});
+
+    </script>
+</body>
+</html>
